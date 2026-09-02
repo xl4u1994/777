@@ -23,7 +23,7 @@ jobs:
 
       - name: Obfuscate into new file
         run: |
-          javascript-obfuscator _worker.js --output _worker.obfuscated.js --compact true --self-defending true
+          javascript-obfuscator _worker.js --output _worker.obfuscated.js --compact true --control-flow-flattening true --string-array true --string-array-encoding base64
 
       - name: Commit obfuscated file
         run: |
