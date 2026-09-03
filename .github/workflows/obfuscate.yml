@@ -23,12 +23,12 @@ jobs:
 
       - name: Obfuscate into new file
         run: |
-          javascript-obfuscator _worker.js --output _worker.obfuscated.js --compact true --control-flow-flattening true --string-array true --string-array-encoding base64
+          javascript-obfuscator _worker.js --output _worker.obfuscated.js --compact true --identifier-names-generator hexadecimal --string-array true --string-array-encoding none --control-flow-flattening false --dead-code-injection false --self-defending false --debug-protection false
 
       - name: Commit obfuscated file
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git add _worker.obfuscated.js
-          git commit -m "Auto-generate obfuscated worker" || echo "Nothing to commit"
+          git commit -m "Auto-generate obfuscated worker (safe mode)" || echo "Nothing to commit"
           git push
